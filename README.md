@@ -5,12 +5,6 @@
 Ghi (pronounced 'ghee') is a relay between GitHub and IRC and/or Mastodon. It was created to take the place of the [now depreciated](https://developer.github.com/changes/2018-04-25-github-services-deprecation/) [GitHub IRC Service](https://github.com/github/github-services/blob/master/lib/services/irc.rb). Ghi receives events from GitHub for a specified repository via a webhook. Then it parses the event and sends the relevant information to your configured IRC channels and/or Mastodon timeline. Ghi was written to be very configuration driven. Therefore, Ghi is set up with a `.ghi.yml` file and can listen for multiple repositories and send to multiple IRC channels. Most of the features in the original GitHub Service are supported in Ghi as well.
 
 
-# Getting Started
-
-Ghi was designed and written to be ran in [AWS Lambda](https://aws.amazon.com/lambda/) with [API Gateway](https://aws.amazon.com/api-gateway/). However, I've also created a very simple HTTP server implementation so Ghi can be ran on any server if desired. Ghi is configured entirely with the `.ghi.yml` file. In this file you will set all necessary information including repositories, IRC nick, IRC host, channels, Mastodon instance, Mastodon user, etc.
-
-## Deployment
-
 ### AWS Lambda
 
 Ghi was written to be ran in AWS Lambda and is the recommended deployment type. There are many ways to deploy Ghi to Lambda, I've found the simplest solution to be [SAM](https://aws.amazon.com/serverless/sam/). I've included several example SAM template in the [examples/SAM.md](examples/SAM.md) file. These can get you started running Ghi in Lambda quickly, but your own deployment method will work as well. If using your own process, be sure to create an API Gateway as well. During the build process be sure install the dependencies in the [`requirements-aws.txt`](requirements-aws.txt) file and add your `.ghi.yml` file. Below is the necessary information for running in Lambda:
